@@ -1,0 +1,40 @@
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\bin\Debug\彩牛通.exe.config
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\bin\Debug\彩牛通.exe
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\bin\Debug\彩牛通.pdb
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\彩牛通.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\彩牛通.CNTMainFrm.resources
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\彩牛通.Properties.Resources.resources
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.GenerateResource.Cache
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\彩牛通.exe
+d:\documents\visual studio 2013\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\bin\Debug\彩牛通.exe.config
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.exe
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\bin\Debug\彩牛通.exe
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\bin\Debug\彩牛通.pdb
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.CNTMainFrm.resources
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.Properties.Resources.resources
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\Interop.Office.dll
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.ResolveComReference.cache
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\obj\Debug\testPrint.PrintOptions.resources
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\bin\Debug\CSkin.dll
+C:\Users\Administrator\Desktop\项目\WindowsFormsApplication2\bin\Debug\CSkin.xml
+C:\项目\彩牛通项目\WindowsFormsApplication2\bin\Debug\彩牛通.exe.config
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.ResolveComReference.cache
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.exe
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
+C:\项目\彩牛通项目\WindowsFormsApplication2\bin\Debug\彩牛通.exe
+C:\项目\彩牛通项目\WindowsFormsApplication2\bin\Debug\彩牛通.pdb
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.CNTMainFrm.resources
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\testPrint.PrintOptions.resources
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.Properties.Resources.resources
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.GenerateResource.Cache
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.StatisticsForm.resources
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.csprojResolveAssemblyReference.cache
+C:\项目\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.LoadSaveFromQuesstion.resources
+C:\项目\彩牛通\彩牛通统计版\WindowsFormsApplication2\bin\Debug\彩牛通.exe.config
+C:\项目\彩牛通\彩牛通统计版\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.ResolveComReference.cache
+C:\项目\彩牛通\彩牛通统计版\WindowsFormsApplication2\obj\Debug\彩牛通.exe
+C:\项目\彩牛通\彩牛通统计版\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
