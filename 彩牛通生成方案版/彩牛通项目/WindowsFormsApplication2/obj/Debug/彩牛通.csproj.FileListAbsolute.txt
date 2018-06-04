@@ -62,3 +62,7 @@ D:\项目\彩牛通\彩牛通生成方案版\彩牛通项目\WindowsFormsApplica
 D:\项目\彩牛通\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.SelectorSetting.resources
 D:\项目\彩牛通\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.StatisticsForm.resources
 D:\项目\彩牛通\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.GenerateResource.Cache
+D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\bin\Debug\彩牛通.exe.config
+D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.ResolveComReference.cache
+D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.exe
+D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
