@@ -228,6 +228,7 @@ namespace 彩牛通
                 GenerateData();
                 setAdditionalColumn();
                 setColumnTwoNew();
+                setColumnTwoSort();//排序
                 setColumnNewFour();
                 //setColumnTwoBiliNew();
                 //for (int i = 0; i < randomTemps.Count; i++)
@@ -265,6 +266,34 @@ namespace 彩牛通
             //    MessageBox.Show("随机数生成失败，请检查设置选项是否有误。重新设置或联系开发者。");
             //}
            
+        }
+        /// <summary>
+        /// 列三中排个序
+        /// </summary>
+        private void setColumnTwoSort()
+        {
+             for (int i = 0; i < randomTemps.Count; i++)
+            {
+                string[] ColumnTwos = randomTemps[i].ColumnTwo.ToString().Split(',');
+                int[] ColumnTwosint = Array.ConvertAll(ColumnTwos, new Converter<string, int>(StrToInt));
+                Array.Sort(ColumnTwosint);
+                String newTwos = "";
+                for (int j = 0; j < ColumnTwosint.Length; j++)
+                {
+                    if (j==0)
+                    {
+                        newTwos += ColumnTwosint[j].ToString() ;
+                    }else
+                    {
+                        newTwos += "," + ColumnTwosint[j];
+                    }
+                }
+                randomTemps[i].ColumnTwo = newTwos;
+            }
+        }
+        public static int StrToInt(string str)
+        {
+            return int.Parse(str);
         }
         private String getAdditionalString(String ct)
         {
@@ -373,21 +402,37 @@ namespace 彩牛通
         {
             int bili = ColumnOneRows / ColumnTwoRows;
             int t = bili;
-            List<int> lists = new List<int>();
+            List<int> lists_heng = new List<int>();
+            List<int> lists_lie = new List<int>();
             for (int i = 0; i < randomTemps.Count; i++)
             {
                 
-                if ((i+1)%ColumnOneRows==0||i==0)
+                if ((i+1)%ColumnOneRows==0||i==0)//方案
                 {
-
-                    lists.Clear();
+                    lists_lie.Clear();
+                    lists_heng.Clear();
+                   
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
                         Random ran = new Random(GetRandomSeed());
                         int index = ran.Next(1, ColumnTwoCount);
-                        if (!lists.Contains(index))
+                        if (!lists_heng.Contains(index))
                         {
-                            lists.Add(index);
+                            lists_heng.Add(index);
+                        }
+                        else
+                        {
+                            j--;
+                            continue;
+                        }
+                    }
+                    for (int j = 0; j < ColumnTwoCount; j++)
+                    {
+                        Random ran = new Random(GetRandomSeed());
+                        int index = ran.Next(0, ColumnTwoCount);
+                        if (!lists_lie.Contains(index))
+                        {
+                            lists_lie.Add(index);
                         }
                         else
                         {
@@ -400,20 +445,22 @@ namespace 彩牛通
                 if (t == bili)
                 {
                     string[] ColumnTwos = randomTemps[i].ColumnTwo.ToString().Split(',');
-                   
+                    string[] newCts = new string[bili];
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
-                        for (int x = 0; x < bili; x++)
+                        for (int x = 0; x < bili; x++)//列
                         {
                             if (j == 0)
                             {
-                                randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists[j] + x) % bili].ToString();
-
+                                randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists_lie[x])].ToString();
+                                newCts[x] = ColumnTwos[(lists_lie[x])].ToString();
                             }
                             else
                             {
-                                randomTemps[i + x].ColumnNewFour = randomTemps[i + x].ColumnNewFour + "," + ColumnTwos[(lists[j] + x) % bili].ToString();
-                            }
+                                randomTemps[i + x].ColumnNewFour = randomTemps[i + x].ColumnNewFour + "," + newCts[(lists_heng[j] + x) % bili].ToString();
+                            }     
+                            
+                           
                         }
                     }
                     

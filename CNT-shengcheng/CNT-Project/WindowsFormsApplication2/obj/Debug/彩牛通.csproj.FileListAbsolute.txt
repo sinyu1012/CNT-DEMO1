@@ -66,3 +66,17 @@ D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsForms
 D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.ResolveComReference.cache
 D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.exe
 D:\项目\彩牛通\开发\彩牛通生成方案版\彩牛通项目\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\bin\Debug\彩牛通.exe.config
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.ResolveComReference.cache
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.exe
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.pdb
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\bin\Debug\彩牛通.exe
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\bin\Debug\彩牛通.pdb
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.csprojResolveAssemblyReference.cache
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.CNTMainFrm.resources
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.LoadSaveFromQuesstion.resources
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\testPrint.PrintOptions.resources
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.Properties.Resources.resources
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.SelectorSetting.resources
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.StatisticsForm.resources
+D:\项目\彩牛通\开发\CNT-shengcheng\CNT-Project\WindowsFormsApplication2\obj\Debug\彩牛通.csproj.GenerateResource.Cache
