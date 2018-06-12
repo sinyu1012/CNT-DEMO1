@@ -337,15 +337,32 @@ namespace 彩牛通
         {
             int bili = Help_ColumnCount;
             int t = bili;
-            List<int> lists = new List<int>();
-            lists.Clear();
+            List<int> lists_heng = new List<int>();
+            List<int> lists_lie = new List<int>();
+            lists_lie.Clear();
+            lists_heng.Clear();
+
             for (int j = 0; j < ColumnFourColumns; j++)
             {
                 Random ran = new Random(GetRandomSeed());
                 int index = ran.Next(1, Help_ColumnCount);
-                if (!lists.Contains(index))
+                if (!lists_heng.Contains(index))
                 {
-                    lists.Add(index);
+                    lists_heng.Add(index);
+                }
+                else
+                {
+                    j--;
+                    continue;
+                }
+            }
+            for (int j = 0; j < Help_ColumnCount; j++)
+            {
+                Random ran = new Random(GetRandomSeed());
+                int index = ran.Next(0, Help_ColumnCount);
+                if (!lists_lie.Contains(index))
+                {
+                    lists_lie.Add(index);
                 }
                 else
                 {
@@ -356,16 +373,10 @@ namespace 彩牛通
             int m = 0 ;
             for (int i = 0; i < help3_randomTemps.Count; i++)
             {
-
-                //if ((i + 1) % ColumnOneRows == 0 || i == 0)
-                //{
-
-                    
-
-                //}
                 if (t == bili)
                 {
                     string[] ColumnTwos = help_randomTemps[m].ColumnNewOne.ToString().Split(',');
+                    string[] newCts = new string[bili];
 
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
@@ -373,12 +384,12 @@ namespace 彩牛通
                         {
                             if (j == 0)
                             {
-                                help3_randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists[j] + x) % bili].ToString();
-
+                                help3_randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists_lie[x])].ToString();
+                                newCts[x] = ColumnTwos[(lists_lie[x])].ToString();
                             }
                             else
                             {
-                                help3_randomTemps[i + x].ColumnNewFour = help3_randomTemps[i + x].ColumnNewFour + "," + ColumnTwos[(lists[j] + x) % bili].ToString();
+                                help3_randomTemps[i + x].ColumnNewFour = help3_randomTemps[i + x].ColumnNewFour + "," + newCts[(lists_heng[j] + x) % bili].ToString();
                             }
                         }
                     }
@@ -424,10 +435,40 @@ namespace 彩牛通
                 RandomTemp randomtemp = new RandomTemp();
                 help3_randomTemps.Add(randomtemp);
             }
+            setColumnTwoSort();
             setColumnNewFour();
 
             updateHelpDGV(dgv_help,help_randomTemps,1);
             updateHelpDGV(dgv_help3, help3_randomTemps,2);
+        }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        private void setColumnTwoSort()
+        {
+            for (int i = 0; i < help_randomTemps.Count; i++)
+            {
+                string[] ColumnTwos = help_randomTemps[i].ColumnNewOne.ToString().Split(',');
+                int[] ColumnTwosint = Array.ConvertAll(ColumnTwos, new Converter<string, int>(StrToInt));
+                Array.Sort(ColumnTwosint);
+                String newTwos = "";
+                for (int j = 0; j < ColumnTwosint.Length; j++)
+                {
+                    if (j == 0)
+                    {
+                        newTwos += ColumnTwosint[j].ToString();
+                    }
+                    else
+                    {
+                        newTwos += "," + ColumnTwosint[j];
+                    }
+                }
+                help_randomTemps[i].ColumnNewOne = newTwos;
+            }
+        }
+        public static int StrToInt(string str)
+        {
+            return int.Parse(str);
         }
         private void GetHelpRan2()
         {
