@@ -228,7 +228,7 @@ namespace 彩牛通
                 GenerateData();
                 setAdditionalColumn();
                 setColumnTwoNew();
-                setColumnTwoSort();//排序
+                //setColumnTwoSort();//排序
                 setColumnNewFour();
                 //setColumnTwoBiliNew();
                 //for (int i = 0; i < randomTemps.Count; i++)
@@ -411,7 +411,6 @@ namespace 彩牛通
                 {
                     lists_lie.Clear();
                     lists_heng.Clear();
-                   
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
                         Random ran = new Random(GetRandomSeed());
@@ -426,13 +425,33 @@ namespace 彩牛通
                             continue;
                         }
                     }
-                    for (int j = 0; j < ColumnTwoCount; j++)
+                    //for (int j = 0; j < ColumnTwoCount; j++)
+                    //{
+                    //    Random ran = new Random(GetRandomSeed());
+                    //    int index = ran.Next(0, ColumnTwoCount);
+                    //    if (!lists_lie.Contains(index))
+                    //    {
+                    //        lists_lie.Add(index);
+                    //    }
+                    //    else
+                    //    {
+                    //        j--;
+                    //        continue;
+                    //    }
+                    //}
+                   
+                }
+                if (t == bili)
+                {
+                    lists_lie.Clear();
+                    lists_heng.Clear();
+                    for (int j = 0; j < ColumnFourColumns; j++)
                     {
                         Random ran = new Random(GetRandomSeed());
-                        int index = ran.Next(0, ColumnTwoCount);
-                        if (!lists_lie.Contains(index))
+                        int index = ran.Next(1, ColumnTwoCount);
+                        if (!lists_heng.Contains(index))
                         {
-                            lists_lie.Add(index);
+                            lists_heng.Add(index);
                         }
                         else
                         {
@@ -440,27 +459,21 @@ namespace 彩牛通
                             continue;
                         }
                     }
-                   
-                }
-                if (t == bili)
-                {
                     string[] ColumnTwos = randomTemps[i].ColumnTwo.ToString().Split(',');
-                    string[] newCts = new string[bili];
+                    //string[] newCts = new string[bili];
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
-                        for (int x = 0; x < bili; x++)//列
+                        for (int x = 0; x < bili; x++)
                         {
                             if (j == 0)
                             {
-                                randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists_lie[x])].ToString();
-                                newCts[x] = ColumnTwos[(lists_lie[x])].ToString();
+                                randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists_heng[j] + x) % bili].ToString();
+
                             }
                             else
                             {
-                                randomTemps[i + x].ColumnNewFour = randomTemps[i + x].ColumnNewFour + "," + newCts[(lists_heng[j] + x) % bili].ToString();
-                            }     
-                            
-                           
+                                randomTemps[i + x].ColumnNewFour = randomTemps[i + x].ColumnNewFour + "," + ColumnTwos[(lists_heng[j] + x) % bili].ToString();
+                            }
                         }
                     }
                     
@@ -2691,6 +2704,24 @@ namespace 彩牛通
         private void label20_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_ColumnFourRan_Click(object sender, EventArgs e)
+        {
+            if (status)
+            {
+                setColumnNewFour();
+                pageCurrent = 1;    //当前页数从1开始
+                nCurrent = 0;       //当前记录数从0开始
+
+                setAdditionalColumn();
+                setColumnTwoNew();
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("无法执行该操作，该操作只有在初始化方案时执行！");
+            }
         }
     }
 }

@@ -64,6 +64,8 @@
             this.btn_totalsave_clear = new System.Windows.Forms.Button();
             this.btn_totalsave_print = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tb_ColumnFourColumns = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.tb_SelectorCount = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tb_SelectorMin = new System.Windows.Forms.TextBox();
@@ -105,8 +107,7 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.tb_ColumnFourColumns = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
+            this.btn_ColumnFourRan = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Random)).BeginInit();
@@ -172,6 +173,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.btn_ColumnFourRan);
             this.panel1.Controls.Add(this.btn_SelectorCHG);
             this.panel1.Controls.Add(this.btn_Corresponding);
             this.panel1.Controls.Add(this.btn_loadSave);
@@ -199,7 +201,7 @@
             this.btn_SelectorCHG.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_SelectorCHG.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_SelectorCHG.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_SelectorCHG.Location = new System.Drawing.Point(1265, 9);
+            this.btn_SelectorCHG.Location = new System.Drawing.Point(1323, 10);
             this.btn_SelectorCHG.Name = "btn_SelectorCHG";
             this.btn_SelectorCHG.Size = new System.Drawing.Size(89, 47);
             this.btn_SelectorCHG.TabIndex = 25;
@@ -214,7 +216,7 @@
             this.btn_Corresponding.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Corresponding.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_Corresponding.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_Corresponding.Location = new System.Drawing.Point(1436, 9);
+            this.btn_Corresponding.Location = new System.Drawing.Point(1494, 10);
             this.btn_Corresponding.Name = "btn_Corresponding";
             this.btn_Corresponding.Size = new System.Drawing.Size(93, 47);
             this.btn_Corresponding.TabIndex = 24;
@@ -230,7 +232,7 @@
             this.btn_loadSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_loadSave.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_loadSave.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_loadSave.Location = new System.Drawing.Point(957, 7);
+            this.btn_loadSave.Location = new System.Drawing.Point(1015, 8);
             this.btn_loadSave.Name = "btn_loadSave";
             this.btn_loadSave.Size = new System.Drawing.Size(92, 47);
             this.btn_loadSave.TabIndex = 14;
@@ -245,7 +247,7 @@
             this.btn_gddel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_gddel.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_gddel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_gddel.Location = new System.Drawing.Point(1067, 7);
+            this.btn_gddel.Location = new System.Drawing.Point(1125, 8);
             this.btn_gddel.Name = "btn_gddel";
             this.btn_gddel.Size = new System.Drawing.Size(93, 47);
             this.btn_gddel.TabIndex = 23;
@@ -257,7 +259,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(633, 21);
+            this.label1.Location = new System.Drawing.Point(691, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 20);
             this.label1.TabIndex = 22;
@@ -267,7 +269,7 @@
             // 
             this.cb_Column1.Font = new System.Drawing.Font("华文楷体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cb_Column1.FormattingEnabled = true;
-            this.cb_Column1.Location = new System.Drawing.Point(402, 17);
+            this.cb_Column1.Location = new System.Drawing.Point(460, 18);
             this.cb_Column1.Name = "cb_Column1";
             this.cb_Column1.Size = new System.Drawing.Size(81, 30);
             this.cb_Column1.TabIndex = 21;
@@ -278,7 +280,7 @@
             this.btn_save.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_save.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_save.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_save.Location = new System.Drawing.Point(1366, 7);
+            this.btn_save.Location = new System.Drawing.Point(1424, 8);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(64, 47);
             this.btn_save.TabIndex = 20;
@@ -290,7 +292,7 @@
             // 
             // tb_page
             // 
-            this.tb_page.Location = new System.Drawing.Point(1204, 20);
+            this.tb_page.Location = new System.Drawing.Point(1262, 21);
             this.tb_page.Name = "tb_page";
             this.tb_page.Size = new System.Drawing.Size(25, 30);
             this.tb_page.TabIndex = 17;
@@ -300,7 +302,7 @@
             // lb_page
             // 
             this.lb_page.AutoSize = true;
-            this.lb_page.Location = new System.Drawing.Point(1230, 24);
+            this.lb_page.Location = new System.Drawing.Point(1288, 25);
             this.lb_page.Name = "lb_page";
             this.lb_page.Size = new System.Drawing.Size(29, 20);
             this.lb_page.TabIndex = 16;
@@ -312,7 +314,7 @@
             this.btn_ColumnTwoRan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_ColumnTwoRan.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_ColumnTwoRan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_ColumnTwoRan.Location = new System.Drawing.Point(224, 7);
+            this.btn_ColumnTwoRan.Location = new System.Drawing.Point(211, 7);
             this.btn_ColumnTwoRan.Name = "btn_ColumnTwoRan";
             this.btn_ColumnTwoRan.Size = new System.Drawing.Size(64, 47);
             this.btn_ColumnTwoRan.TabIndex = 17;
@@ -342,7 +344,7 @@
             this.btn_OK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_OK.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_OK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_OK.Location = new System.Drawing.Point(842, 6);
+            this.btn_OK.Location = new System.Drawing.Point(900, 7);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(93, 47);
             this.btn_OK.TabIndex = 12;
@@ -357,7 +359,7 @@
             this.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_clear.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_clear.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_clear.Location = new System.Drawing.Point(302, 7);
+            this.btn_clear.Location = new System.Drawing.Point(360, 8);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(90, 47);
             this.btn_clear.TabIndex = 13;
@@ -384,7 +386,7 @@
             // txt_SXRow2
             // 
             this.txt_SXRow2.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_SXRow2.Location = new System.Drawing.Point(708, 14);
+            this.txt_SXRow2.Location = new System.Drawing.Point(766, 15);
             this.txt_SXRow2.Name = "txt_SXRow2";
             this.txt_SXRow2.Size = new System.Drawing.Size(116, 32);
             this.txt_SXRow2.TabIndex = 11;
@@ -392,7 +394,7 @@
             // txt_SXRow1
             // 
             this.txt_SXRow1.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txt_SXRow1.Location = new System.Drawing.Point(489, 17);
+            this.txt_SXRow1.Location = new System.Drawing.Point(547, 18);
             this.txt_SXRow1.Name = "txt_SXRow1";
             this.txt_SXRow1.Size = new System.Drawing.Size(139, 32);
             this.txt_SXRow1.TabIndex = 4;
@@ -640,6 +642,24 @@
             this.tabPage3.Text = "设置";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // tb_ColumnFourColumns
+            // 
+            this.tb_ColumnFourColumns.Location = new System.Drawing.Point(771, 483);
+            this.tb_ColumnFourColumns.Name = "tb_ColumnFourColumns";
+            this.tb_ColumnFourColumns.Size = new System.Drawing.Size(105, 30);
+            this.tb_ColumnFourColumns.TabIndex = 34;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(651, 486);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(139, 20);
+            this.label20.TabIndex = 33;
+            this.label20.Text = "列4生成列数：";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // tb_SelectorCount
             // 
@@ -1003,23 +1023,20 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // tb_ColumnFourColumns
+            // btn_ColumnFourRan
             // 
-            this.tb_ColumnFourColumns.Location = new System.Drawing.Point(771, 483);
-            this.tb_ColumnFourColumns.Name = "tb_ColumnFourColumns";
-            this.tb_ColumnFourColumns.Size = new System.Drawing.Size(105, 30);
-            this.tb_ColumnFourColumns.TabIndex = 34;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(651, 486);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(139, 20);
-            this.label20.TabIndex = 33;
-            this.label20.Text = "列4生成列数：";
-            this.label20.Click += new System.EventHandler(this.label20_Click);
+            this.btn_ColumnFourRan.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btn_ColumnFourRan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_ColumnFourRan.Font = new System.Drawing.Font("华文楷体", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_ColumnFourRan.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_ColumnFourRan.Location = new System.Drawing.Point(281, 7);
+            this.btn_ColumnFourRan.Name = "btn_ColumnFourRan";
+            this.btn_ColumnFourRan.Size = new System.Drawing.Size(64, 47);
+            this.btn_ColumnFourRan.TabIndex = 26;
+            this.btn_ColumnFourRan.Text = "列四";
+            this.btn_ColumnFourRan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_ColumnFourRan.UseVisualStyleBackColor = false;
+            this.btn_ColumnFourRan.Click += new System.EventHandler(this.btn_ColumnFourRan_Click);
             // 
             // CNTMainFrm
             // 
@@ -1133,6 +1150,7 @@
         private System.Windows.Forms.Button btn_loadSave;
         private System.Windows.Forms.TextBox tb_ColumnFourColumns;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button btn_ColumnFourRan;
     }
 }
 
