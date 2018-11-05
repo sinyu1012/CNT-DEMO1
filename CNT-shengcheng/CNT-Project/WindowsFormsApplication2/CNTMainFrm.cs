@@ -25,10 +25,12 @@ namespace 彩牛通
         //private int ProjectNo=0;
         Dictionary<int, int> Project;
         Dictionary<int, int> ProjectgdDeleIndex;
+        Dictionary<int, string> zhqDic;
         int deleteCount = 0, signCount=0,saveCount=0;
         int ColumnOneCount;
         int ColumnOneMin;
         int ColumnOneMax;
+        int ZHQMin, ZHQMax, ZHQCount, ZHQRowCount;
         int ColumnTwoCount;
         int ColumnTwoMin;
         int ColumnTwoMax;
@@ -67,6 +69,7 @@ namespace 彩牛通
             SaverandomTemps = new List<RandomTemp>();
             TotalSaveRandomTemps = new List<RandomTemp>();
             Project = new Dictionary<int, int>();
+            zhqDic = new Dictionary<int, string>();
             ProjectgdDeleIndex = new Dictionary<int, int>();
         }
 
@@ -80,6 +83,7 @@ namespace 彩牛通
             loadConfig();
             
             initView();
+            
         }
         private string readSelectorSetting()
         {
@@ -103,7 +107,11 @@ namespace 彩牛通
             cb_Column1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;//不可编辑状态
 
             initDGV(dgv_Random);
-
+            for (int i = 0; i < this.dgv_Random.Columns.Count; i++)
+            {
+                this.dgv_Random.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                //this.dgv_Random.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            }
             
         }
         /// <summary>
@@ -116,6 +124,7 @@ namespace 彩牛通
             DataGridViewTextBoxColumn C1 = new DataGridViewTextBoxColumn();
             C1.HeaderCell.Value = "方案号";
             C1.Width = 100;
+            C1.Visible = false;
             dgv.Columns.Add(C1);
 
            
@@ -126,19 +135,28 @@ namespace 彩牛通
             dgv.Columns.Add(C3);
 
             DataGridViewTextBoxColumn C4 = new DataGridViewTextBoxColumn();
-            C4.HeaderCell.Value = "列2 选号器";
-            C4.Width = 450;
+            C4.HeaderCell.Value = "列2 选号器1";
+            C4.Width = 150;
             dgv.Columns.Add(C4);
+            DataGridViewTextBoxColumn C5 = new DataGridViewTextBoxColumn();
+            C5.HeaderCell.Value = "列2 选号器2";
+            C5.Width = 150;
+            dgv.Columns.Add(C5);
 
             DataGridViewTextBoxColumn C2 = new DataGridViewTextBoxColumn();
             C2.HeaderCell.Value = "列3";
-            C2.Width = 250;
+            C2.Width = 200;
             dgv.Columns.Add(C2);
 
             DataGridViewTextBoxColumn NewC4 = new DataGridViewTextBoxColumn();
             NewC4.HeaderCell.Value = "列4";
-            NewC4.Width = 250;
+            NewC4.Width = 150;
             dgv.Columns.Add(NewC4);
+
+            DataGridViewTextBoxColumn NewC5 = new DataGridViewTextBoxColumn();
+            NewC5.HeaderCell.Value = "列5 排列号2";
+            NewC5.Width = 150;
+            dgv.Columns.Add(NewC5);
             //for (int i = 0; i < AdditionalColumnCount; i++)
             //{
             //    DataGridViewTextBoxColumn c = new DataGridViewTextBoxColumn();
@@ -149,11 +167,13 @@ namespace 彩牛通
             DataGridViewTextBoxColumn c1 = new DataGridViewTextBoxColumn();
             c1.HeaderCell.Value = "单条统计";
             c1.Width = 300;
+            c1.Visible = false;
             dgv.Columns.Add(c1);
 
             DataGridViewTextBoxColumn c2 = new DataGridViewTextBoxColumn();
             c2.HeaderCell.Value = "方案筛选次数";
             c2.Width = 150;
+            c2.Visible = false;
             dgv.Columns.Add(c2);
 
             dgv.RowsDefaultCellStyle.Font = new Font("宋体", 12, FontStyle.Regular);
@@ -162,6 +182,16 @@ namespace 彩牛通
             {
                 dgv.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
+
+            dgv_zhq.Columns.Clear();
+            DataGridViewTextBoxColumn B1 = new DataGridViewTextBoxColumn();
+            B1.HeaderCell.Value = "转化器";
+            B1.Width = 100;
+            dgv_zhq.Columns.Add(B1);
+            DataGridViewTextBoxColumn B2 = new DataGridViewTextBoxColumn();
+            B2.HeaderCell.Value = "对应号";
+            B2.Width = 100;
+            dgv_zhq.Columns.Add(B2);
             
         }
         /// <summary>
@@ -188,7 +218,12 @@ namespace 彩牛通
             SelectorCount = int.Parse(config.AppSettings.Settings["SelectorCount"].Value);
             SelectorMax = int.Parse(config.AppSettings.Settings["SelectorMax"].Value);
             SelectorMin = int.Parse(config.AppSettings.Settings["SelectorMin"].Value);
-            ColumnFourColumns = int.Parse(config.AppSettings.Settings["ColumnFourColumns"].Value); 
+            ColumnFourColumns = int.Parse(config.AppSettings.Settings["ColumnFourColumns"].Value);
+
+            ZHQMax = int.Parse(config.AppSettings.Settings["ZHQMax"].Value);
+            ZHQMin = int.Parse(config.AppSettings.Settings["ZHQMin"].Value);
+            ZHQCount = int.Parse(config.AppSettings.Settings["ZHQCount"].Value);
+            ZHQRowCount = int.Parse(config.AppSettings.Settings["ZHQRowCount"].Value);
             //AddColumnTwoCount = int.Parse(config.AppSettings.Settings["AddColumnTwoCount"].Value);
             //CTZeroCount = int.Parse(config.AppSettings.Settings["CTZeroCount"].Value);
 
@@ -216,12 +251,14 @@ namespace 彩牛通
             signCount = 0;
             randomTemps.Clear();
             dgv_Random.Rows.Clear();
+            dgv_zhq.Rows.Clear();
             Project.Clear();
             ProjectgdDeleIndex.Clear();
             SaverandomTemps.Clear();
             dgv_Save.Rows.Clear();
+            zhqDic.Clear();
             status = true;
-
+            setZHQ();
             //生成随机数方案
             //try
             //{
@@ -230,6 +267,7 @@ namespace 彩牛通
                 setColumnTwoNew();
                 //setColumnTwoSort();//排序
                 setColumnNewFour();
+                setColumnZhq();
                 //setColumnTwoBiliNew();
                 //for (int i = 0; i < randomTemps.Count; i++)
                 //{
@@ -259,13 +297,80 @@ namespace 彩牛通
                 LoadData();
 
                 COTemp = new string[randomTemps.Count];
-                MessageBox.Show(string.Format("成功生成{0}个随机数方案", ProjectCount));
+                //MessageBox.Show(string.Format("成功生成{0}个随机数方案", ProjectCount));
             //}
             //catch (Exception)
             //{
             //    MessageBox.Show("随机数生成失败，请检查设置选项是否有误。重新设置或联系开发者。");
             //}
            
+        }
+        private void setColumnZhq()
+        {
+            for (int i = 0; i < randomTemps.Count; i++)
+            {
+                for (int j = 1; j < ZHQCount + 1; j++)
+                {
+                    string s = randomTemps[i].ColumnOne.ToString();
+                    string[] strs = zhqDic[j].Split(',');
+                    for (int x = 0; x < strs.Length; x++)
+                    {
+                        if (strs[x].Equals(s))
+                        {
+                            randomTemps[i].ColumnZhq = j.ToString();
+                           // dgv.Rows[index].Cells[3].Value = j;//选号器2
+                        }
+                    }
+
+
+                }
+            }
+        }
+        private void setZHQ()
+        {
+            int bili = ZHQRowCount;
+            int total = ZHQRowCount * ZHQCount;
+            List<int> lists = GETZhq(total, 1, ZHQMax + 1);
+            int x = 1;
+            for (int i = 0; i < total; i += bili)
+            {
+                string s = "";
+                for (int j = 0; j < bili; j++)
+                {
+                    if (j==bili-1)
+                    {
+                        s += lists[i + j] ;
+                    }
+                    else
+                    {
+                        s += lists[i + j] + ",";
+                    }
+                    
+                }
+                zhqDic.Add(x,s);
+                x++;
+            }
+            for (int i = 0; i < ZHQCount; i++)
+            {
+                int index = dgv_zhq.Rows.Add();
+                dgv_zhq.Rows[index].Cells[0].Value = i + 1;
+                dgv_zhq.Rows[index].Cells[1].Value = zhqDic[i + 1];
+            }
+        }
+        private List<int> GETZhq(int count, int min, int max)
+        {
+            Random ran = new Random(GetRandomSeed());
+            List<int> lists = new List<int>();
+
+            while (lists.Count < count)
+            {
+                int x = ran.Next(min, max);
+                if (!lists.Contains(x))
+                {
+                    lists.Add(x);
+                }
+            }
+            return lists;
         }
         /// <summary>
         /// 列三中排个序
@@ -395,19 +500,18 @@ namespace 彩牛通
             }
 
         }
-        /// <summary>
-        /// 根据列三ColumnTwo生成列四
-        /// </summary>
         private void setColumnNewFour()
         {
+            
             int bili = ColumnOneRows / ColumnTwoRows;
+            int bili2 = bili/ColumnTwoCount;
             int t = bili;
             List<int> lists_heng = new List<int>();
             List<int> lists_lie = new List<int>();
             for (int i = 0; i < randomTemps.Count; i++)
             {
-                
-                if ((i+1)%ColumnOneRows==0||i==0)//方案
+
+                if ((i + 1) % ColumnOneRows == 0 || i == 0)//方案
                 {
                     lists_lie.Clear();
                     lists_heng.Clear();
@@ -439,7 +543,7 @@ namespace 彩牛通
                     //        continue;
                     //    }
                     //}
-                   
+
                 }
                 if (t == bili)
                 {
@@ -448,7 +552,7 @@ namespace 彩牛通
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
                         Random ran = new Random(GetRandomSeed());
-                        int index = ran.Next(1, ColumnTwoCount);
+                        int index = ran.Next(0, ColumnTwoCount);
                         if (!lists_heng.Contains(index))
                         {
                             lists_heng.Add(index);
@@ -463,12 +567,29 @@ namespace 彩牛通
                     //string[] newCts = new string[bili];
                     for (int j = 0; j < ColumnFourColumns; j++)
                     {
-                        for (int x = 0; x < bili; x++)
+                        int n = 0;
+                        for (int x = 0; x < bili; x +=bili2)
                         {
                             if (j == 0)
                             {
-                                randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists_heng[j] + x) % bili].ToString();
+                                int m=0;
+                                while (m < bili2)
+                                {
+                                    //try
+                                    //{
+                                    int index=i + x + m;
+                                    randomTemps[index].ColumnNewFour = ColumnTwos[(lists_heng[j] + n) % ColumnTwoCount].ToString();
+                                    //}
+                                    //catch (Exception)
+                                    //{
 
+                                    //    randomTemps[i + x].ColumnNewFour = "111";
+
+                                    //}
+                                    m++;
+                                }
+                                n++;
+                               
                             }
                             else
                             {
@@ -476,13 +597,127 @@ namespace 彩牛通
                             }
                         }
                     }
-                    
+
                     t = 1;
                 }
                 else
                 {
                     t++;
                 }
+            }
+        }
+        /// <summary>
+        /// 根据列三ColumnTwo生成列四
+        /// </summary>
+        private void setColumnNewFour1()
+        {
+            int bili2 = 2;
+            int bili = (ColumnOneRows / ColumnTwoRows);
+            
+            int bili2Count = 0;
+            int t = bili;
+            List<int> lists_heng = new List<int>();
+            List<int> lists_lie = new List<int>();
+            for (int i = 0; i < randomTemps.Count; i += bili2)
+            {
+                //倍数，
+                for (bili2Count=0; bili2Count < bili2; bili2Count++)
+                {
+                    if (bili2Count==0)
+                    {
+                        if ((i + 1) % ColumnOneRows == 0 || i == 0)//方案
+                        {
+                            lists_lie.Clear();
+                            lists_heng.Clear();
+                            for (int j = 0; j < ColumnFourColumns; j++)
+                            {
+                                Random ran = new Random(GetRandomSeed());
+                                int index = ran.Next(1, ColumnTwoCount);
+                                if (!lists_heng.Contains(index))
+                                {
+                                    lists_heng.Add(index);
+                                }
+                                else
+                                {
+                                    j--;
+                                    continue;
+                                }
+                            }
+                            //for (int j = 0; j < ColumnTwoCount; j++)
+                            //{
+                            //    Random ran = new Random(GetRandomSeed());
+                            //    int index = ran.Next(0, ColumnTwoCount);
+                            //    if (!lists_lie.Contains(index))
+                            //    {
+                            //        lists_lie.Add(index);
+                            //    }
+                            //    else
+                            //    {
+                            //        j--;
+                            //        continue;
+                            //    }
+                            //}
+
+                        }
+                        if (t == bili)
+                        {
+                            lists_lie.Clear();
+                            lists_heng.Clear();
+                            for (int j = 0; j < ColumnFourColumns; j++)
+                            {
+                                Random ran = new Random(GetRandomSeed());
+                                int index = ran.Next(1, ColumnTwoCount);
+                                if (!lists_heng.Contains(index))
+                                {
+                                    lists_heng.Add(index);
+                                }
+                                else
+                                {
+                                    j--;
+                                    continue;
+                                }
+                            }
+                            string[] ColumnTwos = randomTemps[i].ColumnTwo.ToString().Split(',');
+                            //string[] newCts = new string[bili];
+                            for (int j = 0; j < ColumnFourColumns; j++)
+                            {
+                                for (int x = 0; x < bili; x++)
+                                {
+                                    if (j == 0)
+                                    {
+                                        try
+                                        {
+                                            randomTemps[i + x].ColumnNewFour = ColumnTwos[(lists_heng[j] + x) % bili].ToString();
+
+                                        }
+                                        catch (Exception)
+                                        {
+                                            randomTemps[i + x].ColumnNewFour = "0";
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        randomTemps[i + x].ColumnNewFour = randomTemps[i + x].ColumnNewFour + "," + ColumnTwos[(lists_heng[j] + x) % bili].ToString();
+                                    }
+                                }
+                            }
+
+                            t = 1;
+                        }
+                        else
+                        {
+                            t++;
+                        }
+                    }
+                    else
+                    {
+                        randomTemps[i+1].ColumnNewFour = randomTemps[i].ColumnNewFour;
+
+                    }
+                   
+                }
+               
             }
         }
         /// <summary>
@@ -1116,7 +1351,7 @@ namespace 彩牛通
         private void dgv_Random_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             // 对第1,3列 最后 相同单元格进行合并
-            if ((e.ColumnIndex == 0 && e.RowIndex != -1) || (e.ColumnIndex == (5) && e.RowIndex != -1) || (e.ColumnIndex == (3) && e.RowIndex != -1))
+            if ((e.ColumnIndex == 0 && e.RowIndex != -1) || (e.ColumnIndex == (5) && e.RowIndex != -1) || (e.ColumnIndex == (6) && e.RowIndex != -1) || (e.ColumnIndex == (4) && e.RowIndex != -1))
             {
                 cellPainting(dgv_Random,e);
             }
@@ -1281,22 +1516,31 @@ namespace 彩牛通
                     // 画（填写）单元格内容，相同的内容的单元格只填写第一个
                     if (e.Value != null)
                     {
-                        if (e.RowIndex > 0 &&
+                        try
+                        {
+                            if (e.RowIndex > 0 &&
                         dg.Rows[e.RowIndex - 1].Cells[e.ColumnIndex].Value.ToString() ==
                         e.Value.ToString())
-                        {
+                            {
 
-                        }
-                        else
-                        {
-                            StringFormat stringFormat = new StringFormat();
+                            }
+                            else
+                            {
+                                StringFormat stringFormat = new StringFormat();
 
-                            stringFormat.Alignment = StringAlignment.Near;
-                            //格式.Alignment = StringAlignment.Far; //右对齐
-                            e.Graphics.DrawString((String)e.Value, e.CellStyle.Font,
-                                Brushes.Black, e.CellBounds.X + 2,
-                                e.CellBounds.Y + 5, stringFormat);
+                                stringFormat.Alignment = StringAlignment.Near;
+                                //格式.Alignment = StringAlignment.Far; //右对齐
+                                e.Graphics.DrawString((String)e.Value, e.CellStyle.Font,
+                                    Brushes.Black, e.CellBounds.X + 2,
+                                    e.CellBounds.Y + 5, stringFormat);
+                            }
                         }
+                        catch (Exception)
+                        {
+                            
+                            //throw;
+                        }
+                        
                     }
                     e.Handled = true;
                 }
@@ -1628,16 +1872,39 @@ namespace 彩牛通
 
             int index = dgv.Rows.Add();
             dgv.Rows[index].Cells[0].Value = "方案" + temp.ProjectNo;
-            dgv.Rows[index].Cells[3].Value =temp.ColumnTwo.ToString(); //原来的列二 打的号 列三
+            dgv.Rows[index].Cells[4].Value =temp.ColumnTwo.ToString(); //原来的列二 打的号 列三
             dgv.Rows[index].Cells[1].Value =temp.ColumnNewOne.ToString();// 期号 列一
             dgv.Rows[index].Cells[2].Value = temp.ColumnOne.ToString();//选号器 列二
+            if (temp.ColumnZhq!=null)
+            {
+                 dgv.Rows[index].Cells[3].Value = temp.ColumnZhq.ToString();//选号器2
+            }
+            else
+            {
+                dgv.Rows[index].Cells[3].Value = "0";//选号器2  检查转换器
+            }
+           
+            
+            
+            
             try
             {
-                dgv.Rows[index].Cells[4].Value = temp.ColumnNewFour.ToString();//选号器 列四
+                dgv.Rows[index].Cells[5].Value = temp.ColumnNewFour.ToString();//选号器 列四
+                int zhqIndex=int.Parse(temp.ColumnNewFour.ToString());
+                if (zhqIndex<=zhqDic.Count)
+                {
+                    dgv.Rows[index].Cells[6].Value = zhqDic[int.Parse(temp.ColumnNewFour.ToString())];//选号器 列5
+                }
+                else
+                {
+                    dgv.Rows[index].Cells[6].Value = "0";//选号器 列5 检测转换器 dgv.Rows[index].Cells[6].Value = zhqDic[int.Parse(temp.ColumnNewFour.ToString())];//选号器 列5
+                }
+               
+                
             }
             catch (Exception)
             {
-                dgv.Rows[index].Cells[4].Value = "";//选号器 列四
+                dgv.Rows[index].Cells[5].Value = "!!";//选号器 列四
             }
            
             //for (int AdditionalNum = 0; AdditionalNum < AdditionalColumnCount; AdditionalNum++)
@@ -1702,15 +1969,15 @@ namespace 彩牛通
 
             //     }
             // }
-            if (Project[temp.ProjectNo] >= ProjectMax)//满15次应该保留
-                dgv.Rows[index].Cells[5 ].Value = Project[temp.ProjectNo] + "次";
-            else
-                dgv.Rows[index].Cells[5 ].Value = Project[temp.ProjectNo] + "次";
+            //if (Project[temp.ProjectNo] >= ProjectMax)//满15次应该保留
+            //    dgv.Rows[index].Cells[5 ].Value = Project[temp.ProjectNo] + "次";
+            //else
+            //    dgv.Rows[index].Cells[5 ].Value = Project[temp.ProjectNo] + "次";
 
             //dgv.Rows[index].Cells[4].Value = "";
             for (int x = 0; x < temp.SingleCount1; x++)
             {
-                dgv.Rows[index].Cells[4 ].Value += "X ";
+                dgv.Rows[index].Cells[5 ].Value += "X ";
             }
             temp.Rowindex1 = index;
 
@@ -1806,6 +2073,11 @@ namespace 彩牛通
             config.AppSettings.Settings["SelectorMin"].Value = tb_SelectorMin.Text;
             config.AppSettings.Settings["SelectorCount"].Value = tb_SelectorCount.Text;
             config.AppSettings.Settings["ColumnFourColumns"].Value = tb_ColumnFourColumns.Text;
+
+            config.AppSettings.Settings["ZHQCount"].Value = tb_ZHQCount.Text;
+            config.AppSettings.Settings["ZHQMin"].Value = tb_ZHQMin.Text;
+            config.AppSettings.Settings["ZHQMax"].Value = tb_ZHQMax.Text;
+            config.AppSettings.Settings["ZHQRowCount"].Value = tb_ZHQRowCount.Text;
             //config.AppSettings.Settings["AddColumnTwoCount"].Value = tb_AddColumnTwoCount.Text;
             //config.AppSettings.Settings["CTZeroCount"].Value = tb_CTZeroCount.Text;
             //一定要记得保存，写不带参数的config.Save()也可以
@@ -1839,6 +2111,7 @@ namespace 彩牛通
                     tb_COCount.Text = ColumnOneCount.ToString();
                     tb_COMin.Text = ColumnOneMin.ToString();
                     tb_COMax.Text = ColumnOneMax.ToString();
+
                     tb_CTCount.Text = ColumnTwoCount.ToString();
                     tb_CTMin.Text = ColumnTwoMin.ToString();
                     tb_CTMax.Text = ColumnTwoMax.ToString();
@@ -1853,6 +2126,11 @@ namespace 彩牛通
                     tb_SelectorMax.Text = SelectorMax.ToString();
                     tb_SelectorCount.Text = SelectorCount.ToString();
                     tb_ColumnFourColumns.Text = ColumnFourColumns.ToString();
+
+                    tb_ZHQCount.Text = ZHQCount.ToString();
+                    tb_ZHQMin.Text = ZHQMin.ToString();
+                    tb_ZHQMax.Text = ZHQMax.ToString();
+                    tb_ZHQRowCount.Text = ZHQRowCount.ToString();
                     //tb_AddColumnTwoCount.Text = AddColumnTwoCount.ToString();
                     //tb_CTZeroCount.Text = CTZeroCount.ToString();
                     break;
@@ -2507,8 +2785,6 @@ namespace 彩牛通
             List<int> lists = new List<int>();
             try
             {
-
-                
                     string columnOne = txt_SXRow1.Text;
                     string sxRow2 = txt_SXRow2.Text;
                     string[] strarr0 = columnOne.Split(',');//
@@ -2544,21 +2820,32 @@ namespace 彩牛通
 
                             dgv_Random.Rows[randomtemp.Rowindex1].Cells[1].Style.BackColor = Color.Yellow;
                             ProjectgdDeleIndex[randomtemp.ProjectNo]++;
-                            string[] strarr1 = randomtemp.ColumnOne.Split(',');//选号器
-
-                            for (int x = 0; x < strarr1.Length; x++)//对比
+                            string strarr1="0";
+                            try
                             {
+                                if (randomtemp.ColumnZhq!=null)
+                                {
+                                    strarr1 = randomtemp.ColumnZhq;//选号器
+                                }
+                                else
+                                {
+                                    strarr1 = "0";
+                                }
+                                
+                            }
+                            catch (Exception)
+                            {
+                                strarr1 = "0";
+                            }
                                 for (int j = 0; j < strarr0.Length; j++)
                                 {
-                                    if (strarr1[x].Equals(strarr0[j]))
+                                    if (strarr1.Equals(strarr0[j]))
                                     {//删除
                                         dgv_Random.Rows[randomtemp.Rowindex1].Cells[1].Value = "";
                                         isSave = false;
                                     }
 
                                 }
-
-                            }
 
                             if (isSave)
                             {
@@ -2722,6 +3009,90 @@ namespace 彩牛通
             {
                 MessageBox.Show("无法执行该操作，该操作只有在初始化方案时执行！");
             }
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CgZhq_Click(object sender, EventArgs e)
+        {
+            //ProjectgdDeleIndex 全部设置0
+            deleteCount = 0;
+            signCount = 0;
+            SaverandomTemps.Clear();
+            status = true;
+            zhqDic.Clear();
+            dgv_zhq.Rows.Clear();
+            setZHQ();
+            setColumnZhq();
+
+            pageSize = 100 * (ColumnOneRows);      //设置页面行数 100方案数
+            nMax = (randomTemps.Count / ColumnOneRows) * (ColumnOneRows);
+            pageCount = (nMax / pageSize);    //计算出总页数
+            if ((nMax % pageSize) > 0) pageCount++;
+            pageCurrent = 1;    //当前页数从1开始
+            nCurrent = 0;       //当前记录数从0开始
+            LoadData();
+
+            COTemp = new string[randomTemps.Count];
+        }
+
+        private void dgv_Random_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.ContextMenuStrip = contextMenuStrip1;
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void 复制列一_Click(object sender, EventArgs e)
+        {
+            string str = "";
+            for (int i = 0; i < dgv_Random.Rows.Count; i++)
+            {
+                string s = dgv_Random.Rows[i].Cells[1].Value.ToString();
+                if (!s.Equals(""))
+                {
+                    str += s + "\n";
+                }
+                
+            }
+            Clipboard.SetText(str);
+            MessageBox.Show("复制成功\n"+str);
+        }
+
+        private void 复制列二_Click(object sender, EventArgs e)
+        {
+            int bili = ColumnOneRows / ColumnTwoRows;
+            int bili2 = bili / ColumnTwoCount;
+            string str = "";
+            for (int i = 0; i < dgv_Random.Rows.Count-1; i += bili2)
+            {
+                if (dgv_Random.Rows[i].Cells[6]!=null)
+                {
+                    string s = dgv_Random.Rows[i].Cells[6].Value.ToString();
+                    if (!s.Equals(""))
+                    {
+                        str += s + "\n";
+                    }
+                }
+            }
+            Clipboard.SetText(str);
+            MessageBox.Show("复制成功\n" + str);
         }
     }
 }

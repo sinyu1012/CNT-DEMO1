@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CNTMainFrm));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgv_help3 = new System.Windows.Forms.DataGridView();
             this.dgv_help2 = new System.Windows.Forms.DataGridView();
             this.dgv_help = new System.Windows.Forms.DataGridView();
             this.dgv_Random = new System.Windows.Forms.DataGridView();
@@ -100,6 +101,8 @@
             this.tb_COCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.page_set2 = new System.Windows.Forms.TabPage();
+            this.tb_ColumnFourColumns = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.txt_Help_automaticCount = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.txt_Help2_ColumnMax = new System.Windows.Forms.TextBox();
@@ -127,11 +130,18 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.tb_ColumnFourColumns = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.dgv_help3 = new System.Windows.Forms.DataGridView();
+            this.dgv_zhq = new System.Windows.Forms.DataGridView();
+            this.tb_ZHQRowCount = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tb_ZHQCount = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tb_ZHQMax = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.tb_ZHQMin = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.tabMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_help3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_help2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_help)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Random)).BeginInit();
@@ -146,7 +156,7 @@
             this.page_set2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_help3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_zhq)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -171,6 +181,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.dgv_zhq);
             this.tabPage1.Controls.Add(this.dgv_help3);
             this.tabPage1.Controls.Add(this.dgv_help2);
             this.tabPage1.Controls.Add(this.dgv_help);
@@ -183,6 +194,20 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "首页";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // dgv_help3
+            // 
+            this.dgv_help3.AllowUserToAddRows = false;
+            this.dgv_help3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_help3.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_help3.ColumnHeadersHeight = 35;
+            this.dgv_help3.Location = new System.Drawing.Point(406, 101);
+            this.dgv_help3.Name = "dgv_help3";
+            this.dgv_help3.RowTemplate.Height = 23;
+            this.dgv_help3.Size = new System.Drawing.Size(214, 624);
+            this.dgv_help3.TabIndex = 16;
             // 
             // dgv_help2
             // 
@@ -224,7 +249,7 @@
             this.dgv_Random.Location = new System.Drawing.Point(626, 94);
             this.dgv_Random.Name = "dgv_Random";
             this.dgv_Random.RowTemplate.Height = 23;
-            this.dgv_Random.Size = new System.Drawing.Size(920, 624);
+            this.dgv_Random.Size = new System.Drawing.Size(625, 624);
             this.dgv_Random.TabIndex = 0;
             this.dgv_Random.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_Random_CellPainting);
             // 
@@ -659,6 +684,14 @@
             // 
             this.tabPage3.BackgroundImage = global::彩牛通.Properties.Resources._2a5961f6b52f36a8d0b3a95d9a88b299;
             this.tabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage3.Controls.Add(this.tb_ZHQRowCount);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.tb_ZHQCount);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.tb_ZHQMax);
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.tb_ZHQMin);
+            this.tabPage3.Controls.Add(this.label33);
             this.tabPage3.Controls.Add(this.tb_SelectorCount);
             this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.tb_SelectorMin);
@@ -1031,6 +1064,23 @@
             this.page_set2.Text = "辅助";
             this.page_set2.UseVisualStyleBackColor = true;
             // 
+            // tb_ColumnFourColumns
+            // 
+            this.tb_ColumnFourColumns.Location = new System.Drawing.Point(382, 475);
+            this.tb_ColumnFourColumns.Name = "tb_ColumnFourColumns";
+            this.tb_ColumnFourColumns.Size = new System.Drawing.Size(105, 30);
+            this.tb_ColumnFourColumns.TabIndex = 40;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(262, 478);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(139, 20);
+            this.label29.TabIndex = 39;
+            this.label29.Text = "列4生成列数：";
+            // 
             // txt_Help_automaticCount
             // 
             this.txt_Help_automaticCount.Location = new System.Drawing.Point(382, 409);
@@ -1261,36 +1311,87 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // tb_ColumnFourColumns
+            // dgv_zhq
             // 
-            this.tb_ColumnFourColumns.Location = new System.Drawing.Point(382, 475);
-            this.tb_ColumnFourColumns.Name = "tb_ColumnFourColumns";
-            this.tb_ColumnFourColumns.Size = new System.Drawing.Size(105, 30);
-            this.tb_ColumnFourColumns.TabIndex = 40;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(262, 478);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(139, 20);
-            this.label29.TabIndex = 39;
-            this.label29.Text = "列4生成列数：";
-            // 
-            // dgv_help3
-            // 
-            this.dgv_help3.AllowUserToAddRows = false;
-            this.dgv_help3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgv_zhq.AllowUserToAddRows = false;
+            this.dgv_zhq.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_help3.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_help3.ColumnHeadersHeight = 35;
-            this.dgv_help3.Location = new System.Drawing.Point(406, 101);
-            this.dgv_help3.Name = "dgv_help3";
-            this.dgv_help3.RowTemplate.Height = 23;
-            this.dgv_help3.Size = new System.Drawing.Size(214, 624);
-            this.dgv_help3.TabIndex = 16;
+            this.dgv_zhq.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_zhq.ColumnHeadersHeight = 35;
+            this.dgv_zhq.Location = new System.Drawing.Point(1257, 94);
+            this.dgv_zhq.Name = "dgv_zhq";
+            this.dgv_zhq.RowTemplate.Height = 23;
+            this.dgv_zhq.Size = new System.Drawing.Size(278, 624);
+            this.dgv_zhq.TabIndex = 17;
+            // 
+            // tb_ZHQRowCount
+            // 
+            this.tb_ZHQRowCount.Location = new System.Drawing.Point(1089, 272);
+            this.tb_ZHQRowCount.Name = "tb_ZHQRowCount";
+            this.tb_ZHQRowCount.Size = new System.Drawing.Size(105, 30);
+            this.tb_ZHQRowCount.TabIndex = 50;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.ForeColor = System.Drawing.Color.White;
+            this.label30.Location = new System.Drawing.Point(927, 280);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(169, 20);
+            this.label30.TabIndex = 49;
+            this.label30.Text = "转换器一行个数：";
+            // 
+            // tb_ZHQCount
+            // 
+            this.tb_ZHQCount.Location = new System.Drawing.Point(1089, 227);
+            this.tb_ZHQCount.Name = "tb_ZHQCount";
+            this.tb_ZHQCount.Size = new System.Drawing.Size(105, 30);
+            this.tb_ZHQCount.TabIndex = 48;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.Color.White;
+            this.label31.Location = new System.Drawing.Point(963, 227);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(129, 20);
+            this.label31.TabIndex = 47;
+            this.label31.Text = "转换器行数：";
+            // 
+            // tb_ZHQMax
+            // 
+            this.tb_ZHQMax.Location = new System.Drawing.Point(1089, 176);
+            this.tb_ZHQMax.Name = "tb_ZHQMax";
+            this.tb_ZHQMax.Size = new System.Drawing.Size(105, 30);
+            this.tb_ZHQMax.TabIndex = 46;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.Color.White;
+            this.label32.Location = new System.Drawing.Point(947, 182);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(149, 20);
+            this.label32.TabIndex = 45;
+            this.label32.Text = "转换器最大数：";
+            // 
+            // tb_ZHQMin
+            // 
+            this.tb_ZHQMin.Location = new System.Drawing.Point(1089, 122);
+            this.tb_ZHQMin.Name = "tb_ZHQMin";
+            this.tb_ZHQMin.Size = new System.Drawing.Size(105, 30);
+            this.tb_ZHQMin.TabIndex = 44;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.ForeColor = System.Drawing.Color.White;
+            this.label33.Location = new System.Drawing.Point(947, 125);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(149, 20);
+            this.label33.TabIndex = 43;
+            this.label33.Text = "转换器最小数：";
             // 
             // CNTMainFrm
             // 
@@ -1306,6 +1407,7 @@
             this.Load += new System.EventHandler(this.CNTMainFrm_Load);
             this.tabMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_help3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_help2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_help)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Random)).EndInit();
@@ -1324,7 +1426,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_help3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_zhq)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1432,6 +1534,15 @@
         private System.Windows.Forms.TextBox tb_ColumnFourColumns;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.DataGridView dgv_help3;
+        private System.Windows.Forms.DataGridView dgv_zhq;
+        private System.Windows.Forms.TextBox tb_ZHQRowCount;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox tb_ZHQCount;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox tb_ZHQMax;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox tb_ZHQMin;
+        private System.Windows.Forms.Label label33;
     }
 }
 

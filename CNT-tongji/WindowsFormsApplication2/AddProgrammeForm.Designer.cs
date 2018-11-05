@@ -32,17 +32,17 @@
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.dgv_Random = new System.Windows.Forms.DataGridView();
+            this.行 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.列一 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.粘贴ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv_ColumnTwo = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.粘贴ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.粘贴ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_completion = new System.Windows.Forms.Button();
             this.txt_first = new System.Windows.Forms.TextBox();
-            this.行 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.列一 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Random)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ColumnTwo)).BeginInit();
@@ -99,6 +99,17 @@
             this.dgv_Random.TabIndex = 16;
             this.dgv_Random.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_Random_EditingControlShowing);
             // 
+            // 行
+            // 
+            this.行.HeaderText = "行";
+            this.行.Name = "行";
+            // 
+            // 列一
+            // 
+            this.列一.HeaderText = "列一";
+            this.列一.Name = "列一";
+            this.列一.Width = 200;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -133,6 +144,17 @@
             this.dgv_ColumnTwo.TabIndex = 17;
             this.dgv_ColumnTwo.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_ColumnTwo_EditingControlShowing);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "行";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "列二";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 400;
+            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -147,17 +169,6 @@
             this.粘贴ToolStripMenuItem1.Size = new System.Drawing.Size(108, 24);
             this.粘贴ToolStripMenuItem1.Text = "粘贴";
             this.粘贴ToolStripMenuItem1.Click += new System.EventHandler(this.粘贴ToolStripMenuItem1_Click);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "行";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "列二";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 400;
             // 
             // btn_completion
             // 
@@ -181,17 +192,6 @@
             this.txt_first.Size = new System.Drawing.Size(100, 25);
             this.txt_first.TabIndex = 19;
             // 
-            // 行
-            // 
-            this.行.HeaderText = "行";
-            this.行.Name = "行";
-            // 
-            // 列一
-            // 
-            this.列一.HeaderText = "列一";
-            this.列一.Name = "列一";
-            this.列一.Width = 200;
-            // 
             // AddProgrammeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -206,6 +206,7 @@
             this.Name = "AddProgrammeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加方案";
+            this.Load += new System.EventHandler(this.AddProgrammeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Random)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ColumnTwo)).EndInit();

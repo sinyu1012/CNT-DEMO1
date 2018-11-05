@@ -8,7 +8,13 @@ namespace 彩牛通.Entity
 {
     public class RandomTemp
     {
-       
+        string columnZhq;
+
+        public string ColumnZhq
+        {
+            get { return columnZhq; }
+            set { columnZhq = value; }
+        }
 
         string columnOne;
 

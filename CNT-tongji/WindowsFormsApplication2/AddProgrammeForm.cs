@@ -400,5 +400,10 @@ namespace 彩牛通
             rng.GetBytes(bytes);
             return BitConverter.ToInt32(bytes, 0);
         }
+
+        private void AddProgrammeForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
