@@ -1,0 +1,9 @@
+#国内git push慢的问题，尤其代码过大时#
+首先开启国外代理，在git bash配置如下
+1、配置https走代理
+git config --global --add https.proxy 'socks5://127.0.0.1:1080'
+2、添加https别名仓库地址
+git remote add origin-https [URL]
+#把别名设置为origin-https
+git push origin-https master #使用https走代理push。
+速度瞬间提升，上前后对比图。
